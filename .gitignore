@@ -3,6 +3,6 @@ venv
 **.idea
 **pycache**
 .env
-../../../temp/colmandevclubwebsite-firebase-key.json
+colmandevclubwebsite-firebase-key.json
 **.xlsx
 output
