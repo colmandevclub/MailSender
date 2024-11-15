@@ -14,10 +14,10 @@ SMTP_PORT = 587
 GMAIL_USERNAME = "colmandevclub@gmail.com"  # replace with your Gmail address
 GMAIL_PASSWORD = os.environ["PASSWORD"]  # replace with your Gmail app password
 
-subject = " הזמנה ליום המיון של מועדון המפתחים"
+subject = "ברוכים הבאים למועדון המפתחים!"
 
-file_path = "output/ColmanDevClub.xlsx"
-df = pd.read_excel(file_path, sheet_name='Applicants')
+file_path = "resources/Acceptence.xlsx"
+df = pd.read_excel(file_path, sheet_name='Acceptence')
 
 for index, row in df.iterrows():
     print(f"Row {index + 1}:")
@@ -33,8 +33,26 @@ for index, row in df.iterrows():
     email_message["Subject"] = subject
 
     # HTML content for RTL formatting
-    with open("emails_content/invitation.html", "r", encoding="utf-8") as message_file:
-        html_message = message_file.read()
+    # with open("emails_content/invitation.html", "r", encoding="utf-8") as message_file:
+    #     html_message = message_file.read()
+
+    html_message = f"""<html>
+    <body style="direction: rtl; text-align: right; font-size: 16px">
+        <p style="margin-bottom: 10px">שלום {row['first_name']},</p>
+        <p style="font-weight: bold; font-size: 20px; margin-bottom: 10px">אנו שמחים להודיע לך שעברת בהצלחה את המיונים למועדון המפתחים של המכללה למנהל!</p>
+        <p>המפגש הראשון שלנו (ולאורך כל השנה) יתקיים ביום ראשון <b>17 בנובמבר 2024</b>, בשעות <b>19:00-22:00</b>, בכיתה <b>103 בבניין י"ג</b>.</p>
+        <p>נשמח לראות אותך שם, ולהתחיל ביחד מסע של למידה, צמיחה ושיתוף פעולה.</p>
+        <br>
+        <p style="font-weight: bold;">להצטרפות לקבוצת הוואטסאפ של חברי המועדון:</p>
+        <ul>
+            <li><a href="{os.environ["WHATSAPPLINK"]}">לחץ כאן להצטרפות לקבוצה</a></li>
+        </ul>
+        <br>
+        <p>בברכה,</p>
+        <p>צוות מועדון המפתחים</p>
+    </body>
+</html>
+"""
 
     # Attach the email body message in HTML with RTL formatting
     email_message.attach(MIMEText(html_message, "html", "utf-8"))

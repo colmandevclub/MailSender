@@ -6,3 +6,5 @@ venv
 colmandevclubwebsite-firebase-key.json
 **.xlsx
 output
+/logs
+/resources
