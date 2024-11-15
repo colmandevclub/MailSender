@@ -1,0 +1,8 @@
+.venv
+venv
+**.idea
+**pycache**
+.env
+../../../temp/colmandevclubwebsite-firebase-key.json
+**.xlsx
+output
